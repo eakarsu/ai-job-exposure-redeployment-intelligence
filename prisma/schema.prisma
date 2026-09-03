@@ -1,0 +1,213 @@
+// Generated schema — modeled after beautyhqio conventions.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         Role     @default(ANALYST)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  ANALYST
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String?
+  actorName String?
+  action    String
+  entity    String
+  entityId  String?
+  detail    String?
+  createdAt DateTime @default(now())
+}
+
+model BusinessUnit {
+  id        String   @id @default(cuid())
+  name String
+  division String
+  headcount Int
+  annualPayroll Float
+  status String
+  location String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  roleExposures RoleExposure[]
+  taskProfiles TaskProfile[]
+  scenarioModels ScenarioModel[]
+  redeploymentOptions RedeploymentOption[]
+  vacancyMatchs VacancyMatch[]
+  costComparisons CostComparison[]
+  communicationPacks CommunicationPack[]
+  attritionPlans AttritionPlan[]
+  skillCheckpoints SkillCheckpoint[]
+  managerAlerts ManagerAlert[]
+  programMetrics ProgramMetric[]
+}
+
+model RoleExposure {
+  id        String   @id @default(cuid())
+  roleTitle String
+  headcount Int
+  exposurePct Float
+  horizon String
+  status String
+  trendDirection String
+  unitId String?
+  unit BusinessUnit? @relation(fields: [unitId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TaskProfile {
+  id        String   @id @default(cuid())
+  task String
+  roleRef String
+  shareOfTime Float
+  automatability String
+  evidence String
+  status String
+  unitId String?
+  unit BusinessUnit? @relation(fields: [unitId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ScenarioModel {
+  id        String   @id @default(cuid())
+  name String
+  horizon String
+  assumptions String
+  headcountDelta Float
+  costDelta Float
+  status String
+  unitId String?
+  unit BusinessUnit? @relation(fields: [unitId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RedeploymentOption {
+  id        String   @id @default(cuid())
+  fromRole String
+  toRole String
+  headcount Int
+  gapSkills String
+  status String
+  trainingCost Float
+  unitId String?
+  unit BusinessUnit? @relation(fields: [unitId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VacancyMatch {
+  id        String   @id @default(cuid())
+  vacancyTitle String
+  candidateRef String
+  matchScore Float
+  requiredTraining String
+  status String
+  hiringManager String
+  unitId String?
+  unit BusinessUnit? @relation(fields: [unitId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CostComparison {
+  id        String   @id @default(cuid())
+  scenario String
+  layoffCost Float
+  redeployCost Float
+  netSaving Float
+  horizon String
+  status String
+  unitId String?
+  unit BusinessUnit? @relation(fields: [unitId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CommunicationPack {
+  id        String   @id @default(cuid())
+  audience String
+  title String
+  keyMessages String
+  status String
+  issuedOn DateTime?
+  owner String
+  unitId String?
+  unit BusinessUnit? @relation(fields: [unitId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AttritionPlan {
+  id        String   @id @default(cuid())
+  period String
+  naturalAttrition Int
+  hiringFreeze Int
+  backfillPolicy String
+  status String
+  notes String?
+  unitId String?
+  unit BusinessUnit? @relation(fields: [unitId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SkillCheckpoint {
+  id        String   @id @default(cuid())
+  employeeRef String
+  skill String
+  targetLevel String
+  currentLevel String
+  status String
+  checkDate DateTime?
+  unitId String?
+  unit BusinessUnit? @relation(fields: [unitId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ManagerAlert {
+  id        String   @id @default(cuid())
+  manager String
+  subject String
+  priority String
+  message String
+  status String
+  sentAt DateTime?
+  unitId String?
+  unit BusinessUnit? @relation(fields: [unitId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ProgramMetric {
+  id        String   @id @default(cuid())
+  metric String
+  period String
+  baseline Float
+  current Float
+  target Float
+  status String
+  unitId String?
+  unit BusinessUnit? @relation(fields: [unitId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
