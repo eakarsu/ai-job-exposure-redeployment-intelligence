@@ -124,21 +124,21 @@ export const entities: Record<string, EntityConfig> = {
 export const workflows: WorkflowConfig[] = [
   {
     slug: "exposure-score",
-    title: "Exposure Scorer",
+    title: "Draft: Exposure Scorer",
     description: "Score a role's automation exposure.",
     prompt: "You are a labor-market analyst. Score the role's automation exposure from task composition; identify which tasks drive risk and which remain human-only.",
     fields: ["role", "tasks", "headcount", "industry"],
   },
   {
     slug: "scenario-run",
-    title: "Scenario Modeler",
+    title: "Draft: Scenario Modeler",
     description: "Model a three- or five-year workforce scenario.",
-    prompt: "You are a strategic workforce planner. Model the scenario: headcount and cost deltas under the given assumptions; highlight second-order effects.",
+    prompt: "Explain a scenario using explicit headcount, attrition, salary, severance and training assumptions. Use saved deterministic results for totals; list missing inputs instead of inventing financial estimates.",
     fields: ["horizon", "assumptions", "currentHeadcount", "attritionRate"],
   },
   {
     slug: "redeployment-match",
-    title: "Redeployment Matcher",
+    title: "Draft: Redeployment Matcher",
     description: "Match at-risk employees to internal vacancies.",
     prompt: "You are an internal-mobility specialist. Match the at-risk employee to suitable vacancies, listing gap skills and training plans.",
     fields: ["employeeProfile", "openVacancies", "constraints"],

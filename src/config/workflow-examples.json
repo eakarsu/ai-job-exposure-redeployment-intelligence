@@ -1,0 +1,95 @@
+{
+  "exposure-score": [
+    {
+      "id": "example-1",
+      "label": "Routine finance",
+      "values": {
+        "role": "Accounts payable specialist",
+        "tasks": "Matching 24h/week; exceptions 10h/week; vendor contact 6h/week",
+        "headcount": "40",
+        "industry": "Example business services; declared classifications, no displacement probability."
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Mixed support",
+      "values": {
+        "role": "Customer support associate",
+        "tasks": "FAQ triage 16h/week; complex cases 16h/week; follow-up 8h/week",
+        "headcount": "120",
+        "industry": "Example subscription services; demand growth unknown."
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Physical operations",
+      "values": {
+        "role": "Maintenance technician",
+        "tasks": "Physical repair 28h/week; diagnosis 8h/week; records 4h/week",
+        "headcount": "65",
+        "industry": "Example facilities operations; physical tasks require local context."
+      }
+    }
+  ],
+  "scenario-run": [
+    {
+      "id": "example-1",
+      "label": "Moderate attrition",
+      "values": {
+        "horizon": "3 years",
+        "assumptions": "Constant annual employee cost; no hiring; training costs supplied separately.",
+        "currentHeadcount": "100",
+        "attritionRate": "5% annually; illustrative scenario, not forecast."
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Training investment",
+      "values": {
+        "horizon": "2 years",
+        "assumptions": "Redeploy 20 staff; training 2000 USD/person versus severance 6000 USD/person; no productivity assumption.",
+        "currentHeadcount": "80",
+        "attritionRate": "3% annually"
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "No attrition",
+      "values": {
+        "horizon": "1 year",
+        "assumptions": "Constant headcount and compensation; compare 10 redeployments using explicit one-time costs.",
+        "currentHeadcount": "50",
+        "attritionRate": "0% annually"
+      }
+    }
+  ],
+  "redeployment-match": [
+    {
+      "id": "example-1",
+      "label": "Analyst move",
+      "values": {
+        "employeeProfile": "Example employee: spreadsheet analysis, reconciliation, process documentation.",
+        "openVacancies": "Example vacancy A: operations analyst requiring spreadsheets and process analysis; B: account specialist requiring CRM.",
+        "constraints": "No relocation; six training hours per week; independent suitability review."
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Customer-facing move",
+      "values": {
+        "employeeProfile": "Example employee: CRM, communication, escalation handling.",
+        "openVacancies": "Example vacancy A: customer success specialist; B: technical support requiring scripting.",
+        "constraints": "Prefer customer-facing work; scripting training not yet completed."
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Location constraint",
+      "values": {
+        "employeeProfile": "Example employee: scheduling, inventory control, team handoffs.",
+        "openVacancies": "Example vacancy A: remote operations coordinator; B: on-site warehouse lead in another region.",
+        "constraints": "Remote or local only; do not infer suitability from skill overlap alone."
+      }
+    }
+  ]
+}

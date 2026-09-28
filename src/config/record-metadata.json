@@ -1,0 +1,544 @@
+{
+  "BusinessUnit": {
+    "name": "BusinessUnit",
+    "fields": [
+      {
+        "name": "name",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "division",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "headcount",
+        "kind": "number",
+        "required": true,
+        "integer": true,
+        "min": 0
+      },
+      {
+        "name": "annualPayroll",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "location",
+        "kind": "string",
+        "required": true
+      }
+    ]
+  },
+  "RoleExposure": {
+    "name": "RoleExposure",
+    "fields": [
+      {
+        "name": "roleTitle",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "headcount",
+        "kind": "number",
+        "required": true,
+        "integer": true,
+        "min": 0
+      },
+      {
+        "name": "exposurePct",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "horizon",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "trendDirection",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "unitId",
+        "kind": "string",
+        "required": false,
+        "relation": "BusinessUnit"
+      }
+    ],
+    "parent": {
+      "field": "unitId",
+      "entity": "BusinessUnit"
+    }
+  },
+  "TaskProfile": {
+    "name": "TaskProfile",
+    "fields": [
+      {
+        "name": "task",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "roleRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "shareOfTime",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "automatability",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "evidence",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "unitId",
+        "kind": "string",
+        "required": false,
+        "relation": "BusinessUnit"
+      }
+    ],
+    "parent": {
+      "field": "unitId",
+      "entity": "BusinessUnit"
+    }
+  },
+  "ScenarioModel": {
+    "name": "ScenarioModel",
+    "fields": [
+      {
+        "name": "name",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "horizon",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "assumptions",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "headcountDelta",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "costDelta",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "unitId",
+        "kind": "string",
+        "required": false,
+        "relation": "BusinessUnit"
+      }
+    ],
+    "parent": {
+      "field": "unitId",
+      "entity": "BusinessUnit"
+    }
+  },
+  "RedeploymentOption": {
+    "name": "RedeploymentOption",
+    "fields": [
+      {
+        "name": "fromRole",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "toRole",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "headcount",
+        "kind": "number",
+        "required": true,
+        "integer": true,
+        "min": 0
+      },
+      {
+        "name": "gapSkills",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "trainingCost",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "unitId",
+        "kind": "string",
+        "required": false,
+        "relation": "BusinessUnit"
+      }
+    ],
+    "parent": {
+      "field": "unitId",
+      "entity": "BusinessUnit"
+    }
+  },
+  "VacancyMatch": {
+    "name": "VacancyMatch",
+    "fields": [
+      {
+        "name": "vacancyTitle",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "candidateRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "matchScore",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "requiredTraining",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "hiringManager",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "unitId",
+        "kind": "string",
+        "required": false,
+        "relation": "BusinessUnit"
+      }
+    ],
+    "parent": {
+      "field": "unitId",
+      "entity": "BusinessUnit"
+    }
+  },
+  "CostComparison": {
+    "name": "CostComparison",
+    "fields": [
+      {
+        "name": "scenario",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "layoffCost",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "redeployCost",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "netSaving",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "horizon",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "unitId",
+        "kind": "string",
+        "required": false,
+        "relation": "BusinessUnit"
+      }
+    ],
+    "parent": {
+      "field": "unitId",
+      "entity": "BusinessUnit"
+    }
+  },
+  "CommunicationPack": {
+    "name": "CommunicationPack",
+    "fields": [
+      {
+        "name": "audience",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "title",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "keyMessages",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "issuedOn",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "owner",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "unitId",
+        "kind": "string",
+        "required": false,
+        "relation": "BusinessUnit"
+      }
+    ],
+    "parent": {
+      "field": "unitId",
+      "entity": "BusinessUnit"
+    }
+  },
+  "AttritionPlan": {
+    "name": "AttritionPlan",
+    "fields": [
+      {
+        "name": "period",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "naturalAttrition",
+        "kind": "number",
+        "required": true,
+        "integer": true
+      },
+      {
+        "name": "hiringFreeze",
+        "kind": "number",
+        "required": true,
+        "integer": true
+      },
+      {
+        "name": "backfillPolicy",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "notes",
+        "kind": "string",
+        "required": false
+      },
+      {
+        "name": "unitId",
+        "kind": "string",
+        "required": false,
+        "relation": "BusinessUnit"
+      }
+    ],
+    "parent": {
+      "field": "unitId",
+      "entity": "BusinessUnit"
+    }
+  },
+  "SkillCheckpoint": {
+    "name": "SkillCheckpoint",
+    "fields": [
+      {
+        "name": "employeeRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "skill",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "targetLevel",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "currentLevel",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "checkDate",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "unitId",
+        "kind": "string",
+        "required": false,
+        "relation": "BusinessUnit"
+      }
+    ],
+    "parent": {
+      "field": "unitId",
+      "entity": "BusinessUnit"
+    }
+  },
+  "ManagerAlert": {
+    "name": "ManagerAlert",
+    "fields": [
+      {
+        "name": "manager",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "subject",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "priority",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "message",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "sentAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "unitId",
+        "kind": "string",
+        "required": false,
+        "relation": "BusinessUnit"
+      }
+    ],
+    "parent": {
+      "field": "unitId",
+      "entity": "BusinessUnit"
+    }
+  },
+  "ProgramMetric": {
+    "name": "ProgramMetric",
+    "fields": [
+      {
+        "name": "metric",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "period",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "baseline",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "current",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "target",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "unitId",
+        "kind": "string",
+        "required": false,
+        "relation": "BusinessUnit"
+      }
+    ],
+    "parent": {
+      "field": "unitId",
+      "entity": "BusinessUnit"
+    }
+  }
+}

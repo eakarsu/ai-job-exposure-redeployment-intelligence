@@ -1,0 +1,55 @@
+[
+  {
+    "id": "task-exposure",
+    "title": "Task exposure mix",
+    "description": "Weight declared automation classifications by task hours; supports automate, ai-assisted, and human-only.",
+    "example": {
+      "tasks": [
+        {
+          "task": "Prepare report",
+          "hours": 10,
+          "classification": "ai-assisted"
+        },
+        {
+          "task": "Review client decision",
+          "hours": 5,
+          "classification": "human-only"
+        }
+      ]
+    }
+  },
+  {
+    "id": "workforce-scenario",
+    "title": "Headcount and redeployment costs",
+    "description": "Compare explicit attrition, employee cost, training and severance assumptions. No displacement forecast is inferred.",
+    "example": {
+      "headcount": 100,
+      "years": 3,
+      "annualAttritionPercent": 10,
+      "annualCostCents": 10000000,
+      "redeployCount": 10,
+      "trainingCents": 500000,
+      "severanceCents": 1000000
+    }
+  },
+  {
+    "id": "vacancy-match",
+    "title": "Vacancy skill matching",
+    "description": "Rank vacancies by explicit normalized skill overlap and list training gaps.",
+    "example": {
+      "skills": [
+        "analysis",
+        "writing"
+      ],
+      "vacancies": [
+        {
+          "id": "role-1",
+          "requiredSkills": [
+            "analysis",
+            "sql"
+          ]
+        }
+      ]
+    }
+  }
+]
